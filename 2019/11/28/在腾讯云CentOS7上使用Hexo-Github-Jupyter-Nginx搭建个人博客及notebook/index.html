@@ -47,28 +47,32 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="刘攀的个人专栏">
-<meta property="og:url" content="http:&#x2F;&#x2F;liupan.run&#x2F;index.html">
+  <meta name="description" content="购买腾讯云服务器-略CentOS系统配置(7.7)添加用户 adduser  liu  #添加用户passwd liu   #设置密码  修改权权 vim &#x2F;etc&#x2F;sudoers  liu  ALL=(ALL)   ALL  基础软件安装 sudo yum install -y wget vim curl  查看磁盘命令参考 lsblk,du,disk -l,free -h, cfdisk &#x2F;d">
+<meta name="keywords" content="Hexo,Github,CentOS7,腾讯CVS,Nginx,Jupyter,Github博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在腾讯云CentOS7上使用Hexo-Github-Jupyter-Nginx搭建个人博客及notebook">
+<meta property="og:url" content="http:&#x2F;&#x2F;liupan.run&#x2F;2019&#x2F;11&#x2F;28&#x2F;%E5%9C%A8%E8%85%BE%E8%AE%AF%E4%BA%91CentOS7%E4%B8%8A%E4%BD%BF%E7%94%A8Hexo-Github-Jupyter-Nginx%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8F%8Anotebook&#x2F;index.html">
 <meta property="og:site_name" content="刘攀的个人专栏">
+<meta property="og:description" content="购买腾讯云服务器-略CentOS系统配置(7.7)添加用户 adduser  liu  #添加用户passwd liu   #设置密码  修改权权 vim &#x2F;etc&#x2F;sudoers  liu  ALL=(ALL)   ALL  基础软件安装 sudo yum install -y wget vim curl  查看磁盘命令参考 lsblk,du,disk -l,free -h, cfdisk &#x2F;d">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-11-28T07:10:53.531Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://liupan.run/">
+<link rel="canonical" href="http://liupan.run/2019/11/28/%E5%9C%A8%E8%85%BE%E8%AE%AF%E4%BA%91CentOS7%E4%B8%8A%E4%BD%BF%E7%94%A8Hexo-Github-Jupyter-Nginx%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8F%8Anotebook/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>刘攀的个人专栏</title>
+  <title>在腾讯云CentOS7上使用Hexo-Github-Jupyter-Nginx搭建个人博客及notebook | 刘攀的个人专栏</title>
   
 
 
@@ -184,10 +188,10 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-cn">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-cn">
     <link itemprop="mainEntityOfPage" href="http://liupan.run/2019/11/28/%E5%9C%A8%E8%85%BE%E8%AE%AF%E4%BA%91CentOS7%E4%B8%8A%E4%BD%BF%E7%94%A8Hexo-Github-Jupyter-Nginx%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8F%8Anotebook/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -201,8 +205,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/28/%E5%9C%A8%E8%85%BE%E8%AE%AF%E4%BA%91CentOS7%E4%B8%8A%E4%BD%BF%E7%94%A8Hexo-Github-Jupyter-Nginx%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8F%8Anotebook/" class="post-title-link" itemprop="url">在腾讯云CentOS7上使用Hexo-Github-Jupyter-Nginx搭建个人博客及notebook</a>
+          在腾讯云CentOS7上使用Hexo-Github-Jupyter-Nginx搭建个人博客及notebook
         </h1>
 
         <div class="post-meta">
@@ -227,7 +230,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="购买腾讯云服务器-略"><a href="#购买腾讯云服务器-略" class="headerlink" title="购买腾讯云服务器-略"></a>购买腾讯云服务器-略</h3><h3 id="CentOS系统配置-7-7"><a href="#CentOS系统配置-7-7" class="headerlink" title="CentOS系统配置(7.7)"></a>CentOS系统配置(7.7)</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><blockquote>
+        <h3 id="购买腾讯云服务器-略"><a href="#购买腾讯云服务器-略" class="headerlink" title="购买腾讯云服务器-略"></a>购买腾讯云服务器-略</h3><h3 id="CentOS系统配置-7-7"><a href="#CentOS系统配置-7-7" class="headerlink" title="CentOS系统配置(7.7)"></a>CentOS系统配置(7.7)</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><blockquote>
 <p>adduser  liu  #添加用户<br>passwd liu   #设置密码</p>
 </blockquote>
 <p>修改权权 vim /etc/sudoers</p>
@@ -310,24 +313,29 @@
 <p>nohup jupyter-notebook –allow-root  &gt;  /var/log/note.log  2&gt;&amp;1 &amp;</p>
 </blockquote>
 <h3 id="Hexo使用"><a href="#Hexo使用" class="headerlink" title="Hexo使用"></a>Hexo使用</h3><h4 id="node安装"><a href="#node安装" class="headerlink" title="node安装"></a>node安装</h4><h4 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h4><h3 id="nginx安装"><a href="#nginx安装" class="headerlink" title="nginx安装"></a>nginx安装</h3><h4 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h4><h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2>
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/Hexo-Github-CentOS7-%E8%85%BE%E8%AE%AFCVS-Nginx-Jupyter-Github%E5%8D%9A%E5%AE%A2/" rel="tag"># Hexo,Github,CentOS7,腾讯CVS,Nginx,Jupyter,Github博客</a>
+          </div>
+
+        
+
+
+        
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-
 
 
           </div>
@@ -356,6 +364,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#购买腾讯云服务器-略"><span class="nav-number">1.</span> <span class="nav-text">购买腾讯云服务器-略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS系统配置-7-7"><span class="nav-number">2.</span> <span class="nav-text">CentOS系统配置(7.7)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加用户"><span class="nav-number">2.1.</span> <span class="nav-text">添加用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基础软件安装"><span class="nav-number">2.2.</span> <span class="nav-text">基础软件安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看磁盘命令参考"><span class="nav-number">2.3.</span> <span class="nav-text">查看磁盘命令参考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装最新版git"><span class="nav-number">2.4.</span> <span class="nav-text">安装最新版git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装zsh及oh-my-zsh配置"><span class="nav-number">2.5.</span> <span class="nav-text">安装zsh及oh-my-zsh配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH登录腾讯云服务器"><span class="nav-number">2.6.</span> <span class="nav-text">SSH登录腾讯云服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VSCode配置远程访问"><span class="nav-number">2.7.</span> <span class="nav-text">VSCode配置远程访问</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Anaconda安装"><span class="nav-number">3.</span> <span class="nav-text">Anaconda安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">3.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PATH配置vim-etc-profile"><span class="nav-number">3.2.</span> <span class="nav-text">PATH配置vim /etc/profile</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成配置文件-设置密码"><span class="nav-number">3.3.</span> <span class="nav-text">生成配置文件,设置密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#必要配置-vim-jupyter-jupyter-notebook-config-py"><span class="nav-number">3.4.</span> <span class="nav-text">必要配置 vim ~/.jupyter/jupyter_notebook_config.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装扩展程序"><span class="nav-number">3.5.</span> <span class="nav-text">安装扩展程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装其他内核kernel"><span class="nav-number">3.6.</span> <span class="nav-text">安装其他内核kernel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看进并关闭程序"><span class="nav-number">3.7.</span> <span class="nav-text">查看进并关闭程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后台运行-写运行脚本-vim-run-sh"><span class="nav-number">3.8.</span> <span class="nav-text">后台运行,写运行脚本 vim ~/run.sh</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo使用"><span class="nav-number">4.</span> <span class="nav-text">Hexo使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#node安装"><span class="nav-number">4.1.</span> <span class="nav-text">node安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hexo安装"><span class="nav-number">4.2.</span> <span class="nav-text">hexo安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx安装"><span class="nav-number">5.</span> <span class="nav-text">nginx安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx配置"><span class="nav-number">5.1.</span> <span class="nav-text">nginx配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行"><span class="nav-number"></span> <span class="nav-text">运行</span></a></div>
       </div>
       <!--/noindex-->
 
