@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>在腾讯云CentOS7上使用Hexo-Github-Jupyter-Nginx搭建个人博客及notebook</title>
+    <url>/2019/11/28/%E5%9C%A8%E8%85%BE%E8%AE%AF%E4%BA%91CentOS7%E4%B8%8A%E4%BD%BF%E7%94%A8Hexo-Github-Jupyter-Nginx%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%8F%8Anotebook/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h2 id="1-CentOS7系统准备"><a href="#1-CentOS7系统准备" class="headerlink" title="1.CentOS7系统准备"></a>1.CentOS7系统准备</h2><h3 id="购买腾讯云服务器-略"><a href="#购买腾讯云服务器-略" class="headerlink" title="购买腾讯云服务器-略"></a>购买腾讯云服务器-略</h3><h3 id="CentOS系统配置-7-7"><a href="#CentOS系统配置-7-7" class="headerlink" title="CentOS系统配置(7.7)"></a>CentOS系统配置(7.7)</h3><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><blockquote>
+<p>adduser  liu  #添加用户<br>passwd liu   #设置密码</p>
+</blockquote>
+<p>修改权权 vim /etc/sudoers</p>
+<blockquote>
+<p>liu  ALL=(ALL)   ALL</p>
+</blockquote>
+<h4 id="基础软件安装"><a href="#基础软件安装" class="headerlink" title="基础软件安装"></a>基础软件安装</h4><blockquote>
+<p>sudo yum install -y wget vim curl</p>
+</blockquote>
+<h4 id="查看磁盘命令参考"><a href="#查看磁盘命令参考" class="headerlink" title="查看磁盘命令参考"></a>查看磁盘命令参考</h4><blockquote>
+<p>lsblk,du,disk -l,free -h, cfdisk /dev/vda,df -h</p>
+</blockquote>
+<h4 id="安装最新版git"><a href="#安装最新版git" class="headerlink" title="安装最新版git"></a>安装最新版git</h4><blockquote>
+<p>sudo yum install openssl openssl-devel curl-devel expat-devel  #安装依赖<br>cd ~/download<br>wget <a href="https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.24.0.tar.xz" target="_blank" rel="noopener">https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.24.0.tar.xz</a><br>xz -d git-2.24.0.tar.xz<br>tar -xvf git-2.24.0.tar<br>cd git-2.24.0<br>sudo make prefix=/usr/local/git  all<br>sudo make prefix=/usr/local/git  install</p>
+</blockquote>
+<p>添加git路径至PATH,vim /etc/profile 添加至最后；</p>
+<blockquote>
+<p>export PATH=$PATH:/usr/local/git/bin</p>
+</blockquote>
+<p>或者采用以下命令</p>
+<blockquote>
+<p>echo “export PATH=$PATH:/usr/local/git/bin” &gt;&gt;  /etc/profile</p>
+</blockquote>
+<p>git基本配置</p>
+<blockquote>
+<p>ssh-keygen -t rsa -C <a href="mailto:xxxxx@xx.com" target="_blank" rel="noopener">xxxxx@xx.com</a>  # .ssh/id_rsa.pub  copy to github<br>git config –global user.name  xxxx<br>git config –global user.email <a href="mailto:xxx@xx.com" target="_blank" rel="noopener">xxx@xx.com</a><br>git config –global core.editor vim</p>
+</blockquote>
+<p>git关联远程库</p>
+<blockquote>
+<p>git init<br>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>/xxxx/note.git<br>git push origin -u master  # 初次使用-u,再次使用不用-u<br>git push oritin master</p>
+</blockquote>
+<h4 id="安装zsh及oh-my-zsh配置"><a href="#安装zsh及oh-my-zsh配置" class="headerlink" title="安装zsh及oh-my-zsh配置"></a>安装zsh及oh-my-zsh配置</h4><blockquote>
+<p>su liu<br>sudo yum install zsh<br>chsh -s /bin/zsh<br>sh -c “curl -L <a href="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh&quot;" target="_blank" rel="noopener">https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh&quot;</a></p>
+</blockquote>
+<p>安装autojump插件</p>
+<blockquote>
+<p>sudo yum install autojump autojump-zsh</p>
+</blockquote>
+<p>安装高亮插件</p>
+<blockquote>
+<p>git clone <a href="https://github.com/zsh-users/zsh-syntax-highlighting.git" target="_blank" rel="noopener">https://github.com/zsh-users/zsh-syntax-highlighting.git</a> ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting</p>
+</blockquote>
+<p>安装powerline字体</p>
+<blockquote>
+<p>cd ~<br>git clone <a href="https://github.com/powerline/fonts.git" target="_blank" rel="noopener">https://github.com/powerline/fonts.git</a><br>./fonts/install.sh   #安装至 ~/.local/share/fonts<br>rm -rf ./fonts</p>
+</blockquote>
+<p>配置插件 vim ~/.zshrc</p>
+<blockquote>
+<p>plugins=(git zsh-autosuggestions zsh-syntax-highlinhting autojump)</p>
+</blockquote>
+<h4 id="SSH登录腾讯云服务器"><a href="#SSH登录腾讯云服务器" class="headerlink" title="SSH登录腾讯云服务器"></a>SSH登录腾讯云服务器</h4><ol>
+<li><p>登录腾讯云控制台-&gt; SSH密钥-&gt; 创建,并下载-&gt;关机-&gt; 绑定主机 -&gt;启动主机</p>
+</li>
+<li><p>使用putty访问时，需使用PuttyGen进行转换【存在不兼容】,PuttyGen-&gt;ImportKey-&gt;SavePrivateKey</p>
+</li>
+<li><p>在Putty中加载密钥文件,Connection-&gt;SSH-&gt;Auth-&gt;Browser-&gt;选择转换后的文件</p>
+</li>
+<li><p>sudo vim /etc/ssh/sshd_config</p>
+<blockquote>
+<p>PasswordAuthentication yes</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="VSCode配置远程访问"><a href="#VSCode配置远程访问" class="headerlink" title="VSCode配置远程访问"></a>VSCode配置远程访问</h4><ol>
+<li>安装Remote-SSH插件并配置,配置内容如下：vim ~/.ssh/config<blockquote>
+<p>Host my_server<br>   HostName 111.233.111.111<br>   User liu<br>   Identiy D:\path\to\ppkfile</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="查看系统版本"><a href="#查看系统版本" class="headerlink" title="查看系统版本"></a>查看系统版本</h4><blockquote>
+<p>cat /etc/redhat-release</p>
+</blockquote>
+<h2 id="2-Anaconda安装"><a href="#2-Anaconda安装" class="headerlink" title="2.Anaconda安装"></a>2.Anaconda安装</h2><h3 id="安装anaconda"><a href="#安装anaconda" class="headerlink" title="安装anaconda"></a>安装anaconda</h3><blockquote>
+<p>wget <a href="https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh" target="_blank" rel="noopener">https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh</a><br>./Anaconda3-2019.10-Linux-x86_64.sh</p>
+</blockquote>
+<h3 id="PATH配置vim-etc-profile"><a href="#PATH配置vim-etc-profile" class="headerlink" title="PATH配置vim /etc/profile"></a>PATH配置vim /etc/profile</h3><blockquote>
+<p>export PATH=$PATH:/home/anaconda3/bin<br>source /etc/profile</p>
+</blockquote>
+<h3 id="生成配置文件-设置密码"><a href="#生成配置文件-设置密码" class="headerlink" title="生成配置文件,设置密码"></a>生成配置文件,设置密码</h3><blockquote>
+<p>jupyternotebook –generate-config<br>jupyter notebook password  #设置密码</p>
+</blockquote>
+<h3 id="必要配置-vim-jupyter-jupyter-notebook-config-py"><a href="#必要配置-vim-jupyter-jupyter-notebook-config-py" class="headerlink" title="必要配置 vim ~/.jupyter/jupyter_notebook_config.py"></a>必要配置 vim ~/.jupyter/jupyter_notebook_config.py</h3><blockquote>
+<p>c.NotebookApp.ip=’*’<br>c.NotebookApp.open_browser=False<br>c.NotebookApp.port=8888<br>c.NotebookApp.notebook_dir=”/home/liu/my-jupyter-data”</p>
+</blockquote>
+<h3 id="安装扩展程序"><a href="#安装扩展程序" class="headerlink" title="安装扩展程序"></a>安装扩展程序</h3><blockquote>
+<p>pip install jupyter_contrib_nbextensions<br>jupyter contrib nbextension install –user<br>jupyter nbextension enable codefolding/main<br>pip install jupyterthemes  #主题</p>
+</blockquote>
+<h3 id="安装其他内核kernel"><a href="#安装其他内核kernel" class="headerlink" title="安装其他内核kernel"></a>安装其他内核kernel</h3><blockquote>
+<p>pip install bash_kernel<br>python -m bash_kernel.install<br>jupyter kernelspec list</p>
+</blockquote>
+<h3 id="查看进并关闭程序"><a href="#查看进并关闭程序" class="headerlink" title="查看进并关闭程序"></a>查看进并关闭程序</h3><blockquote>
+<p>ps -ef | grep jupyter<br>kill -9 PID</p>
+</blockquote>
+<h3 id="后台运行-写运行脚本-vim-run-sh"><a href="#后台运行-写运行脚本-vim-run-sh" class="headerlink" title="后台运行,写运行脚本 vim ~/run.sh"></a>后台运行,写运行脚本 vim ~/run.sh</h3><blockquote>
+<p>nohup jupyter-notebook –allow-root  &gt;  /var/log/note.log  2&gt;&amp;1 &amp;</p>
+</blockquote>
+<h2 id="3-Nodejs安装"><a href="#3-Nodejs安装" class="headerlink" title="3.Nodejs安装"></a>3.Nodejs安装</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><blockquote>
+<p>wget <a href="https://npm.taobao.org/mirrors/node/v12.13.1/node-v12.13.1-linux-x64.tar.xz" target="_blank" rel="noopener">https://npm.taobao.org/mirrors/node/v12.13.1/node-v12.13.1-linux-x64.tar.xz</a><br>xz -d node-v12.13.1-linux-x64.tar.xz<br>tar -xvf node-v12.13.1-linux-x64.tar node</p>
+</blockquote>
+<p>将node目录加入PATH,echo “export PATH=$PATH:~/nodejs/bin”或建立软链接</p>
+<blockquote>
+<p>ln -s ~/nodejs/bin/node  /usr/bin/node<br>ln -s ~/nodejs/bin/npm  /usr/bin/npm<br>ln -s ~/nodejs/bin/npx  /usr/bin/npx</p>
+</blockquote>
+<h3 id="配置源"><a href="#配置源" class="headerlink" title="配置源"></a>配置源</h3><blockquote>
+<p>npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a><br>npm config get registry<br>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a><br>cnpm install -g @vue/cli<br>cnpm install -g webpack</p>
+</blockquote>
+<h2 id="4-Hexo应用"><a href="#4-Hexo应用" class="headerlink" title="4.Hexo应用"></a>4.Hexo应用</h2><h3 id="hexo安装-注意添加路径至PATH"><a href="#hexo安装-注意添加路径至PATH" class="headerlink" title="hexo安装(注意添加路径至PATH)"></a>hexo安装(注意添加路径至PATH)</h3><blockquote>
+<p>cnpm install -g hexo-cli<br>cnpm i hexo-deployer-git –save<br>cnpm i hexo-generator-feed  –save<br>cnpm i hexo-generator-searchdb –save</p>
+</blockquote>
+<h3 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h3><blockquote>
+<p>hexo init myblog<br>cd myblog<br>npm install</p>
+</blockquote>
+<h3 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h3><blockquote>
+<p>hexo new “title”<br>hexo new page –path about/me “About me”</p>
+</blockquote>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><blockquote>
+<p>hexo publish [layout] “filename”<br>hexo serer -p -s -l<br>hexo deploy<br>hexo render file1  file2<br>hexo migrate “type”<br>hexo clean<br>hexo list<br>hexo –safe<br>hexo –debug<br>hexo –silent<br>hexo –draft<br>hexo server -i 192.168.1.1</p>
+</blockquote>
+<h3 id="安装额外应用及主题"><a href="#安装额外应用及主题" class="headerlink" title="安装额外应用及主题"></a>安装额外应用及主题</h3><blockquote>
+<p>npm install hexo-server –save<br>git clone <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next</a> themes/next</p>
+</blockquote>
+<h3 id="部署至Github"><a href="#部署至Github" class="headerlink" title="部署至Github"></a>部署至Github</h3><p>在github创建项目 myname.github.io.git<br>git add push正常操作即可预览效果</p>
+<h3 id="自动部署-hexo-g-d-即同步至github主页"><a href="#自动部署-hexo-g-d-即同步至github主页" class="headerlink" title="自动部署 hexo g -d 即同步至github主页"></a>自动部署 hexo g -d 即同步至github主页</h3><p>vim ./myblog/_config.yml 添加内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">- type: git </span><br><span class="line">  repo: https://github.com/xxxx/xxxx.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>部署</p>
+<blockquote>
+<p>hexo clean<br>hexo g -d</p>
+</blockquote>
+<p>部署后生成的静态文件在public文件夹中</p>
+<h3 id="nginx安装"><a href="#nginx安装" class="headerlink" title="nginx安装"></a>nginx安装</h3><blockquote>
+<p>sudo yum install -y nginx<br>service nginx start<br>vim /etc/nginx/nginx.conf<br>sudo nginx -s reload</p>
+</blockquote>
+<h3 id="nginx配置-–给-myblog-public-文件设置代理即可"><a href="#nginx配置-–给-myblog-public-文件设置代理即可" class="headerlink" title="nginx配置 –给./myblog/public 文件设置代理即可"></a>nginx配置 –给./myblog/public 文件设置代理即可</h3><blockquote>
+<p>sudo vim /etc/nginx/nginx.conf</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">user root; #必须设置root否则会有权限问题</span><br><span class="line">...</span><br><span class="line">server &#123;</span><br><span class="line">        listen       80 default_server;</span><br><span class="line">        server_name     111.231.141.333; #ip或域名</span><br><span class="line">        root    /home/liu/myblog/public;</span><br><span class="line">        location / &#123;</span><br><span class="line">                root /home/liupan/my-projects/myblog/public; #public路径</span><br><span class="line">                index index.html index.htm;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>sudo nginx -s reload  #即可重新加载</p>
+</blockquote>
+<h2 id="5-Jupyter使用Nginx代理"><a href="#5-Jupyter使用Nginx代理" class="headerlink" title="5.Jupyter使用Nginx代理"></a>5.Jupyter使用Nginx代理</h2><blockquote>
+<p>sudo vim /etc/nginx/nginx.conf  #添加内容location</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location /note &#123;</span><br><span class="line">        proxy_pass      http://127.0.0.1:8888/note;</span><br><span class="line">        #proxy_redirect http://localhost:8888/  $scheme://$host/;</span><br><span class="line">        proxy_redirect  off;</span><br><span class="line">        proxy_set_header        Host    $host;</span><br><span class="line">        proxy_set_header        X-Real-IP       $remote_addr;</span><br><span class="line">        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header        REMOTE-HOST     $remote_addr;</span><br><span class="line"></span><br><span class="line">        proxy_connect_timeout   30s;</span><br><span class="line">        proxy_read_timeout      86400;</span><br><span class="line">        proxy_send_timeout      30s;</span><br><span class="line">        proxy_http_version      1.1;</span><br><span class="line">        proxy_set_header        Upgrade $http_upgrade;</span><br><span class="line">        proxy_set_header        Connection      &quot;upgrade&quot;;</span><br><span class="line">        expires 12h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>sudo nginx -s reload</p>
+</blockquote>
+<h2 id="6-运行"><a href="#6-运行" class="headerlink" title="6.运行"></a>6.运行</h2><blockquote>
+<p>hexo g -d  #重新部署</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Hexo,Github,CentOS7,腾讯CVS,Nginx,Jupyter,Github博客</tag>
+      </tags>
+  </entry>
+</search>
