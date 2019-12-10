@@ -55,7 +55,7 @@
 <meta property="og:site_name" content="刘攀的个人专栏">
 <meta property="og:description" content="安装pycrypto1# pip install pycrypto   RSA是一种公钥密码算法，RSA的密文是对代码明文的数字的 E 次方求mod N 的结果。也就是将明文和自己做E次乘法，然后再将其结果除以 N 求余数，余数就是密文。RSA是一个简洁的加密算法。E 和 N 的组合就是公钥（public key）。对于RSA的解密，即密文的数字的 D 次方求mod N 即可，即密文和自己做 D">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-02T12:27:35.321Z">
+<meta property="og:updated_time" content="2019-12-03T09:20:54.900Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://liupan.run/2019/12/02/RSA%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E7%AD%BE%E5%90%8D%E9%AA%8C%E7%AD%BE%E7%9A%84Python%E6%93%8D%E4%BD%9C/">
@@ -148,7 +148,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">5</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -158,7 +158,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">4</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">5</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -234,10 +234,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-12-02 20:25:17 / 修改时间：20:27:35" itemprop="dateCreated datePublished" datetime="2019-12-02T20:25:17+08:00">2019-12-02</time>
+              <time title="创建时间：2019-12-02 20:25:17" itemprop="dateCreated datePublished" datetime="2019-12-02T20:25:17+08:00">2019-12-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-03 17:20:54" itemprop="dateModified" datetime="2019-12-03T17:20:54+08:00">2019-12-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -305,6 +311,40 @@ b&apos;-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC28f7fs
 <blockquote>
 <p>无论是加密机密还是签名验签都使用同一对秘钥对，</p>
 </blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">Format</th>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">PKCS #7</td>
+<td align="left">Cryptographic Message Syntax Standard</td>
+<td align="left">A PKCS #7 file can be used to store certificates, which is a SignedData structure without data (just the certificates). The file name extension is usually <code>.p7b</code>, <code>.p7c</code></td>
+</tr>
+<tr>
+<td align="left">PKCS #8</td>
+<td align="left">Private-Key Information Syntax Standard.</td>
+<td align="left">Used to carry private certificate keypairs (encrypted or unencrypted).</td>
+</tr>
+<tr>
+<td align="left">PKCS #12</td>
+<td align="left">Personal Information Exchange Syntax Standard.</td>
+<td align="left">Defines a file format commonly used to store private keys with accompanying public key certificates, protected with a password-based symmetric key. It is the successor to PFX from Microsoft.</td>
+</tr>
+<tr>
+<td align="left">DER</td>
+<td align="left">Distinguished Encoding Rules</td>
+<td align="left">A binary format for keys or certificates. It is a message transfer syntax specified by the ITU in X.690.</td>
+</tr>
+<tr>
+<td align="left">PEM</td>
+<td align="left">Privacy Enhanced Mail</td>
+<td align="left">Base64 encoded DER certificates or keys, with additional header and footer lines.   The PEM private key format uses the header and footer lines:  <code>-----BEGIN RSA PRIVATE KEY-----</code>  <code>-----END RSA PRIVATE KEY-----</code>   The PEM public key format uses the header and footer lines:  <code>-----BEGIN PUBLIC KEY-----</code>  <code>-----END PUBLIC KEY-----</code>   The PEM certificate uses the header and footer lines:  <code>-----BEGIN CERTIFICATE-----</code>  <code>-----END CERTIFICATE-----</code></td>
+</tr>
+</tbody></table>
 
     </div>
 
@@ -327,7 +367,10 @@ b&apos;-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC28f7fs
     <a href="/2019/11/30/Hexo%E4%BD%BF%E7%94%A8%E5%8F%8A%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/" rel="prev" title="Hexo使用及主题配置">
       <i class="fa fa-chevron-left"></i> Hexo使用及主题配置
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/10/Flask%E5%90%8E%E7%AB%AF-Vue%E5%89%8D%E7%AB%AF-Webpack%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8-01/" rel="next" title="Flask后端-Vue前端-Webpack创建应用-01">
+      Flask后端-Vue前端-Webpack创建应用-01 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -381,7 +424,7 @@ b&apos;-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC28f7fs
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -394,7 +437,7 @@ b&apos;-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC28f7fs
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
