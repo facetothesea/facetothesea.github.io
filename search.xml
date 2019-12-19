@@ -1,6 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>知识点零散记录</title>
+    <url>/2019/12/19/%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9B%B6%E6%95%A3%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="知识点零散记录"><a href="#知识点零散记录" class="headerlink" title="知识点零散记录"></a>知识点零散记录</h1><h2 id="修改-gitignore后立机生效"><a href="#修改-gitignore后立机生效" class="headerlink" title="修改.gitignore后立机生效"></a>修改.gitignore后立机生效</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git rm -r --cached .  #清除缓存  </span><br><span class="line">git add . #重新trace file  </span><br><span class="line">git commit -m "update .gitignore" #提交和注释  </span><br><span class="line">git push origin master #可选，如果需要同步到remote上的话</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<h2 id="pip修改镜像源为豆瓣源"><a href="#pip修改镜像源为豆瓣源" class="headerlink" title="pip修改镜像源为豆瓣源"></a>pip修改镜像源为豆瓣源</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># linux:    ~/.pip/pip.conf 或 ~/.config/pip/pip.conf</span><br><span class="line"># windows:  %APPDATA%\pip\pip.ini 或 %HOME%\pip\pip.ini</span><br><span class="line">[global]</span><br><span class="line">timeout=60</span><br><span class="line">index-url=https://pypi.doubanio.com/simple</span><br><span class="line">trusted-host=pypi.doubanio.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="npm设置淘宝镜像"><a href="#npm设置淘宝镜像" class="headerlink" title="npm设置淘宝镜像"></a>npm设置淘宝镜像</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<h2 id="vscode设置保存时自动将CRLF转换为LF"><a href="#vscode设置保存时自动将CRLF转换为LF" class="headerlink" title="vscode设置保存时自动将CRLF转换为LF"></a>vscode设置保存时自动将CRLF转换为LF</h2><ul>
+<li><p>下载EditorConfig for VS Code</p>
+</li>
+<li><p>项目目录创建.editorconfig</p>
+</li>
+<li><p>添加内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[*]</span><br><span class="line">charset = utf-8</span><br><span class="line">indent_style = space</span><br><span class="line">indent_size = 2</span><br><span class="line">end_of_line = lf</span><br><span class="line">insert_final_newline = true</span><br><span class="line">trim_trailing_whitespace = true</span><br></pre></td></tr></table></figure>
+
+<p> <code>git config --global core.autocrlf</code> 请查看并修改。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>pip</tag>
+        <tag>npm</tag>
+        <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flask后端-Vue前端-Webpack创建应用-02</title>
+    <url>/2019/12/19/Flask%E5%90%8E%E7%AB%AF-Vue%E5%89%8D%E7%AB%AF-Webpack%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8-02/</url>
+    <content><![CDATA[<h1 id="Flask后端-Vue前端-Webpack创建应用-02"><a href="#Flask后端-Vue前端-Webpack创建应用-02" class="headerlink" title="Flask后端-Vue前端-Webpack创建应用-02"></a>Flask后端-Vue前端-Webpack创建应用-02</h1><ul>
+<li><p>安装<br>npm i element-ui -S</p>
+</li>
+<li><p>安装插件并修改babel<br>npm install babel-plugin-component -D  #修改配置文件.babelrc</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p>引用组件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; Button, Select &#125; from &apos;element-ui&apos;</span><br><span class="line">import &apos;element-ui/lib/theme-chalk/index.css&apos;</span><br><span class="line">Vue.use(Button.name, Button)</span><br><span class="line">Vue.use(Select.name, Select)</span><br><span class="line">// 或按以下方式</span><br><span class="line">// Vue.use(Button)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装工具</p>
+<p>npm install element-theme -g</p>
+</li>
+<li><p>构建导航栏</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<template>
+    <div id="app">
+      <el-menu :default-active="activeIndex2" router="true" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+        <el-menu-item index="/">简易WMS</el-menu-item>
+        <el-submenu index="2">
+          <template slot="title">基本管理</template>
+          <el-menu-item index="/materialmgmt">物料管理</el-menu-item>
+          <el-menu-item index="/storagespacemgmt">货位管理</el-menu-item>
+          <el-menu-item index="/safetyinventory">安全库存</el-menu-item>
+        </el-submenu>
+        <el-menu-item index="/inventorymgmt">库存管理</el-menu-item>
+        <el-menu-item index="/dataexport">数据导出</el-menu-item>
+        <el-menu-item index="/help">帮助</el-menu-item>
+        <el-menu-item index="/about">关于</el-menu-item>
+        <el-menu-item index="/others">其他</el-menu-item>
+      </el-menu>
+      <router-view></router-view>
+    </div>
+  </template>
+  <figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">+ 创建组件并创建路由</span><br><span class="line"></span><br><span class="line">  ```javascript</span><br><span class="line">  <span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line">  <span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">'@/components/About'</span></span><br><span class="line">  <span class="keyword">import</span> DataExport <span class="keyword">from</span> <span class="string">'@/components/DataExport'</span></span><br><span class="line">  <span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">'@/components/HelloWorld'</span></span><br><span class="line">  <span class="keyword">import</span> Help <span class="keyword">from</span> <span class="string">'@/components/Help'</span></span><br><span class="line">  <span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'@/components/Home'</span></span><br><span class="line">  <span class="keyword">import</span> Inventory <span class="keyword">from</span> <span class="string">'@/components/Inventory'</span></span><br><span class="line">  <span class="keyword">import</span> Material <span class="keyword">from</span> <span class="string">'@/components/Material'</span></span><br><span class="line">  <span class="keyword">import</span> NotFound <span class="keyword">from</span> <span class="string">'@/components/NotFound'</span></span><br><span class="line">  <span class="keyword">import</span> Others <span class="keyword">from</span> <span class="string">'@/components/Others'</span></span><br><span class="line">  <span class="keyword">import</span> SafetyInventory <span class="keyword">from</span> <span class="string">'@/components/SafetyInventory'</span></span><br><span class="line">  <span class="keyword">import</span> StorageSpace <span class="keyword">from</span> <span class="string">'@/components/StorageSpace'</span></span><br><span class="line">  </span><br><span class="line">  Vue.use(Router)</span><br><span class="line">  </span><br><span class="line">  export <span class="keyword">default</span> <span class="built_in">new</span> Router(&#123;</span><br><span class="line">    mode: <span class="string">'history'</span>,</span><br><span class="line">    routes: [</span><br><span class="line">      &#123; <span class="type">path</span>: <span class="string">'/about'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'About'</span>,</span><br><span class="line">        component: About</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/dataexport'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'dataexport'</span>,</span><br><span class="line">        component: DataExport</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/hello'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'hello'</span>,</span><br><span class="line">        component: HelloWorld</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/help'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'help'</span>,</span><br><span class="line">        component: Help</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'Home'</span>,</span><br><span class="line">        component: Home</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/inventorymgmt'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'inventory'</span>,</span><br><span class="line">        component: Inventory</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/materialmgmt'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'material'</span>,</span><br><span class="line">        component: Material</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/others'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'others'</span>,</span><br><span class="line">        component: Others</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/safetyinventory'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'safetyinventory'</span>,</span><br><span class="line">        component: SafetyInventory</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/storagespacemgmt'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'storagespace'</span>,</span><br><span class="line">        component: StorageSpace</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123; <span class="type">path</span>: <span class="string">'*'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'NoPage'</span>,</span><br><span class="line">        component: NotFound</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建子组件并构建为一个页面</p>
+</li>
+<li><p>安装mock插件npm install webpack-api-mocker –save-dev  <strong>(模拟API请求数据)</strong></p>
+<ul>
+<li><p>项目目录创建mock/index.js</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs=<span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> proxy=&#123;</span><br><span class="line">  <span class="string">'GET /api/user'</span>:&#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">username</span>:<span class="string">'kenny'</span>,<span class="attr">sex</span>:<span class="number">6</span>&#125;,</span><br><span class="line">  <span class="string">'GET /api/user/list'</span>:[</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">username</span>:<span class="string">'kenny'</span>,<span class="attr">sex</span>:<span class="number">6</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">2</span>,<span class="attr">username</span>:<span class="string">'kenny2'</span>,<span class="attr">sex</span>:<span class="number">7</span>&#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">'POST /api/login/account'</span>: <span class="function">(<span class="params">req, res</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;password,username&#125;=req.body;</span><br><span class="line">    <span class="keyword">if</span>(password===<span class="string">"88888888"</span> &amp;&amp; username=== <span class="string">"admin"</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span> res.send(&#123;</span><br><span class="line">        status:<span class="string">'ok'</span>,</span><br><span class="line">        code:<span class="number">0</span>,</span><br><span class="line">        token:<span class="string">'adkeofkjdljoeijflj'</span>,</span><br><span class="line">        data:&#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">username</span>:<span class="string">'kenny'</span>,<span class="attr">sex</span>:<span class="number">6</span>&#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> res.send(&#123;<span class="attr">status</span>:<span class="string">'error'</span>,<span class="attr">code</span>:<span class="number">403</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">'/DELETE /api/user/:id'</span>:<span class="function">(<span class="params">req,res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'---&gt;'</span>,req.body)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'---&gt;'</span>,req.params.id)</span><br><span class="line">    res.send(&#123;<span class="attr">status</span>:<span class="string">'ok'</span>,<span class="attr">message</span>:<span class="string">'删除成功'</span>&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = proxy</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>在webpack.dev.config.js修改</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> webpackMock = <span class="built_in">require</span>(<span class="string">'webpack-api-mocker'</span>);  <span class="comment">//引入webpack-api-mocker</span></span><br><span class="line">devServer: &#123;</span><br><span class="line">    before(app)&#123; <span class="comment">//此外为添加内容</span></span><br><span class="line">      webpackMock(app,path.resolve(__dirname,<span class="string">'mock/index.js'</span>))</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>配置EL-MENU时有个坑，一直提醒异常</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;el-menu</span><br><span class="line">      :default-active=&quot;activeIndex&quot;</span><br><span class="line">      router   //这里只需这样设置即可，不用设置true</span><br><span class="line">      class=&quot;el-menu-demo&quot;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<ul>
+<li><p>Element-ui 自带表单验证</p>
+<p>是否必须： required:true|| fasle<br>根据正则表达式验证： pattern:<br>最大长度和最小长度： min和max<br>数据转换：transform（value）{return}<br>自定义校验功能：validador:fn(rule, value, callback);<br>自带验证类型： type:</p>
+<pre><code>string：必须是类型string。This is the default * type.
+number：必须是类型number。
+boolean：必须是类型boolean。
+method：必须是类型function。
+regexp：必须是RegExp创建新项时不生成异常的实例 或* 字符串RegExp。
+integer：必须是类型number和整数。
+float：必须是类型number和浮点数。
+array：必须是由…确定的数组Array.isArray。
+object：必须是类型object而不是Array.isArray。
+enum：价值必须存在于enum。
+date：值必须有效，由确定 Date
+url：必须是类型url。
+hex：必须是类型hex。
+email：必须是类型email。</code></pre></li>
+<li><p>rules为data中的返回值</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">rules:&#123;</span><br><span class="line">        invname:[</span><br><span class="line">          &#123; <span class="attr">required</span>: <span class="literal">true</span>, <span class="attr">message</span>:<span class="string">"不能为空"</span>,<span class="attr">trigger</span>:<span class="string">'blur'</span>&#125;</span><br><span class="line">        ],</span><br><span class="line">        code:[</span><br><span class="line">          &#123;<span class="attr">required</span>:<span class="literal">true</span>,<span class="attr">message</span>:<span class="string">"不能为空"</span>,<span class="attr">trigger</span>:<span class="string">'blur'</span>&#125;</span><br><span class="line">        ],</span><br><span class="line">        acount:[</span><br><span class="line">          &#123;<span class="attr">required</span>:<span class="literal">true</span>,<span class="attr">type</span>:<span class="string">'number'</span>,<span class="attr">message</span>:<span class="string">'必须为数字'</span>&#125;</span><br><span class="line">        ],</span><br><span class="line">        allocation:[</span><br><span class="line">          &#123;<span class="attr">required</span>:<span class="literal">true</span>,<span class="attr">message</span>:<span class="string">"不能为空"</span>,<span class="attr">trigger</span>:<span class="string">'blur'</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Mockjs拒绝访问异常</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dev: &#123;</span><br><span class="line"></span><br><span class="line">    // Paths</span><br><span class="line">    assetsSubDirectory: &apos;static&apos;,</span><br><span class="line">    assetsPublicPath: &apos;/&apos;,</span><br><span class="line">    proxyTable: &#123;&#125;,</span><br><span class="line"></span><br><span class="line">    // Various Dev Server settings</span><br><span class="line">    host: &apos;192.168.1.139&apos;, // 设置为固定IP，否则易出错；</span><br><span class="line">    port: 9000, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined</span><br><span class="line">    autoOpenBrowser: false,</span><br><span class="line">    errorOverlay: true,</span><br><span class="line">    notifyOnErrors: true,</span><br><span class="line">    poll: false, // https://webpa</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>flask</tag>
+        <tag>vue</tag>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Flask后端-Vue前端-Webpack创建应用-01</title>
     <url>/2019/12/10/Flask%E5%90%8E%E7%AB%AF-Vue%E5%89%8D%E7%AB%AF-Webpack%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8-01/</url>
     <content><![CDATA[<h1 id="Flask后端-Vue前端-Webpack创建应用-01"><a href="#Flask后端-Vue前端-Webpack创建应用-01" class="headerlink" title="Flask后端-Vue前端-Webpack创建应用-01"></a>Flask后端-Vue前端-Webpack创建应用-01</h1><blockquote>

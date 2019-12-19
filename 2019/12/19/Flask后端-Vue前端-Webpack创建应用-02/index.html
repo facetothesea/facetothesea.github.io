@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="刘攀的个人专栏" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://liupan.run').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","Pisces | Gemini":240,"display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Flask后端-Vue前端-Webpack创建应用-02 安装npm i element-ui -S  安装插件并修改babelnpm install babel-plugin-component -D  #修改配置文件.babelrc">
+<meta name="keywords" content="flask,vue,webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flask后端-Vue前端-Webpack创建应用-02">
+<meta property="og:url" content="http:&#x2F;&#x2F;liupan.run&#x2F;2019&#x2F;12&#x2F;19&#x2F;Flask%E5%90%8E%E7%AB%AF-Vue%E5%89%8D%E7%AB%AF-Webpack%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8-02&#x2F;index.html">
+<meta property="og:site_name" content="刘攀的个人专栏">
+<meta property="og:description" content="Flask后端-Vue前端-Webpack创建应用-02 安装npm i element-ui -S  安装插件并修改babelnpm install babel-plugin-component -D  #修改配置文件.babelrc">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-19T14:17:25.543Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://liupan.run/2019/12/19/Flask%E5%90%8E%E7%AB%AF-Vue%E5%89%8D%E7%AB%AF-Webpack%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8-02/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Flask后端-Vue前端-Webpack创建应用-02 | 刘攀的个人专栏</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘攀的个人专栏</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">面朝大海,春暖花开</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">14</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">1</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">7</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liupan.run/2019/12/19/Flask%E5%90%8E%E7%AB%AF-Vue%E5%89%8D%E7%AB%AF-Webpack%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="liupan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘攀的个人专栏">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flask后端-Vue前端-Webpack创建应用-02
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-19 22:13:43 / 修改时间：22:17:25" itemprop="dateCreated datePublished" datetime="2019-12-19T22:13:43+08:00">2019-12-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Flask后端-Vue前端-Webpack创建应用-02"><a href="#Flask后端-Vue前端-Webpack创建应用-02" class="headerlink" title="Flask后端-Vue前端-Webpack创建应用-02"></a>Flask后端-Vue前端-Webpack创建应用-02</h1><ul>
+<li><p>安装<br>npm i element-ui -S</p>
+</li>
+<li><p>安装插件并修改babel<br>npm install babel-plugin-component -D  #修改配置文件.babelrc</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p>引用组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Button, Select &#125; from &apos;element-ui&apos;</span><br><span class="line">import &apos;element-ui/lib/theme-chalk/index.css&apos;</span><br><span class="line">Vue.use(Button.name, Button)</span><br><span class="line">Vue.use(Select.name, Select)</span><br><span class="line">// 或按以下方式</span><br><span class="line">// Vue.use(Button)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装工具</p>
+<p>npm install element-theme -g</p>
+</li>
+<li><p>构建导航栏</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<template>
+    <div id="app">
+      <el-menu :default-active="activeIndex2" router="true" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+        <el-menu-item index="/">简易WMS</el-menu-item>
+        <el-submenu index="2">
+          <template slot="title">基本管理</template>
+          <el-menu-item index="/materialmgmt">物料管理</el-menu-item>
+          <el-menu-item index="/storagespacemgmt">货位管理</el-menu-item>
+          <el-menu-item index="/safetyinventory">安全库存</el-menu-item>
+        </el-submenu>
+        <el-menu-item index="/inventorymgmt">库存管理</el-menu-item>
+        <el-menu-item index="/dataexport">数据导出</el-menu-item>
+        <el-menu-item index="/help">帮助</el-menu-item>
+        <el-menu-item index="/about">关于</el-menu-item>
+        <el-menu-item index="/others">其他</el-menu-item>
+      </el-menu>
+      <router-view></router-view>
+    </div>
+  </template>
+  <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+ 创建组件并创建路由</span><br><span class="line"></span><br><span class="line">  ```javascript</span><br><span class="line">  <span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line">  <span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">'@/components/About'</span></span><br><span class="line">  <span class="keyword">import</span> DataExport <span class="keyword">from</span> <span class="string">'@/components/DataExport'</span></span><br><span class="line">  <span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">'@/components/HelloWorld'</span></span><br><span class="line">  <span class="keyword">import</span> Help <span class="keyword">from</span> <span class="string">'@/components/Help'</span></span><br><span class="line">  <span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'@/components/Home'</span></span><br><span class="line">  <span class="keyword">import</span> Inventory <span class="keyword">from</span> <span class="string">'@/components/Inventory'</span></span><br><span class="line">  <span class="keyword">import</span> Material <span class="keyword">from</span> <span class="string">'@/components/Material'</span></span><br><span class="line">  <span class="keyword">import</span> NotFound <span class="keyword">from</span> <span class="string">'@/components/NotFound'</span></span><br><span class="line">  <span class="keyword">import</span> Others <span class="keyword">from</span> <span class="string">'@/components/Others'</span></span><br><span class="line">  <span class="keyword">import</span> SafetyInventory <span class="keyword">from</span> <span class="string">'@/components/SafetyInventory'</span></span><br><span class="line">  <span class="keyword">import</span> StorageSpace <span class="keyword">from</span> <span class="string">'@/components/StorageSpace'</span></span><br><span class="line">  </span><br><span class="line">  Vue.use(Router)</span><br><span class="line">  </span><br><span class="line">  export <span class="keyword">default</span> <span class="built_in">new</span> Router(&#123;</span><br><span class="line">    mode: <span class="string">'history'</span>,</span><br><span class="line">    routes: [</span><br><span class="line">      &#123; <span class="type">path</span>: <span class="string">'/about'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'About'</span>,</span><br><span class="line">        component: About</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/dataexport'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'dataexport'</span>,</span><br><span class="line">        component: DataExport</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/hello'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'hello'</span>,</span><br><span class="line">        component: HelloWorld</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/help'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'help'</span>,</span><br><span class="line">        component: Help</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'Home'</span>,</span><br><span class="line">        component: Home</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/inventorymgmt'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'inventory'</span>,</span><br><span class="line">        component: Inventory</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/materialmgmt'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'material'</span>,</span><br><span class="line">        component: Material</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/others'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'others'</span>,</span><br><span class="line">        component: Others</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/safetyinventory'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'safetyinventory'</span>,</span><br><span class="line">        component: SafetyInventory</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="type">path</span>: <span class="string">'/storagespacemgmt'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'storagespace'</span>,</span><br><span class="line">        component: StorageSpace</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123; <span class="type">path</span>: <span class="string">'*'</span>,</span><br><span class="line">        <span class="type">name</span>: <span class="string">'NoPage'</span>,</span><br><span class="line">        component: NotFound</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建子组件并构建为一个页面</p>
+</li>
+<li><p>安装mock插件npm install webpack-api-mocker –save-dev  <strong>(模拟API请求数据)</strong></p>
+<ul>
+<li><p>项目目录创建mock/index.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs=<span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> proxy=&#123;</span><br><span class="line">  <span class="string">'GET /api/user'</span>:&#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">username</span>:<span class="string">'kenny'</span>,<span class="attr">sex</span>:<span class="number">6</span>&#125;,</span><br><span class="line">  <span class="string">'GET /api/user/list'</span>:[</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">username</span>:<span class="string">'kenny'</span>,<span class="attr">sex</span>:<span class="number">6</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">id</span>:<span class="number">2</span>,<span class="attr">username</span>:<span class="string">'kenny2'</span>,<span class="attr">sex</span>:<span class="number">7</span>&#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">'POST /api/login/account'</span>: <span class="function">(<span class="params">req, res</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;password,username&#125;=req.body;</span><br><span class="line">    <span class="keyword">if</span>(password===<span class="string">"88888888"</span> &amp;&amp; username=== <span class="string">"admin"</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span> res.send(&#123;</span><br><span class="line">        status:<span class="string">'ok'</span>,</span><br><span class="line">        code:<span class="number">0</span>,</span><br><span class="line">        token:<span class="string">'adkeofkjdljoeijflj'</span>,</span><br><span class="line">        data:&#123;<span class="attr">id</span>:<span class="number">1</span>,<span class="attr">username</span>:<span class="string">'kenny'</span>,<span class="attr">sex</span>:<span class="number">6</span>&#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> res.send(&#123;<span class="attr">status</span>:<span class="string">'error'</span>,<span class="attr">code</span>:<span class="number">403</span>&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">'/DELETE /api/user/:id'</span>:<span class="function">(<span class="params">req,res</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'---&gt;'</span>,req.body)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'---&gt;'</span>,req.params.id)</span><br><span class="line">    res.send(&#123;<span class="attr">status</span>:<span class="string">'ok'</span>,<span class="attr">message</span>:<span class="string">'删除成功'</span>&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = proxy</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>在webpack.dev.config.js修改</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpackMock = <span class="built_in">require</span>(<span class="string">'webpack-api-mocker'</span>);  <span class="comment">//引入webpack-api-mocker</span></span><br><span class="line">devServer: &#123;</span><br><span class="line">    before(app)&#123; <span class="comment">//此外为添加内容</span></span><br><span class="line">      webpackMock(app,path.resolve(__dirname,<span class="string">'mock/index.js'</span>))</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>配置EL-MENU时有个坑，一直提醒异常</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;el-menu</span><br><span class="line">      :default-active=&quot;activeIndex&quot;</span><br><span class="line">      router   //这里只需这样设置即可，不用设置true</span><br><span class="line">      class=&quot;el-menu-demo&quot;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<ul>
+<li><p>Element-ui 自带表单验证</p>
+<p>是否必须： required:true|| fasle<br>根据正则表达式验证： pattern:<br>最大长度和最小长度： min和max<br>数据转换：transform（value）{return}<br>自定义校验功能：validador:fn(rule, value, callback);<br>自带验证类型： type:</p>
+<pre><code>string：必须是类型string。This is the default * type.
+number：必须是类型number。
+boolean：必须是类型boolean。
+method：必须是类型function。
+regexp：必须是RegExp创建新项时不生成异常的实例 或* 字符串RegExp。
+integer：必须是类型number和整数。
+float：必须是类型number和浮点数。
+array：必须是由…确定的数组Array.isArray。
+object：必须是类型object而不是Array.isArray。
+enum：价值必须存在于enum。
+date：值必须有效，由确定 Date
+url：必须是类型url。
+hex：必须是类型hex。
+email：必须是类型email。</code></pre></li>
+<li><p>rules为data中的返回值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">rules:&#123;</span><br><span class="line">        invname:[</span><br><span class="line">          &#123; <span class="attr">required</span>: <span class="literal">true</span>, <span class="attr">message</span>:<span class="string">"不能为空"</span>,<span class="attr">trigger</span>:<span class="string">'blur'</span>&#125;</span><br><span class="line">        ],</span><br><span class="line">        code:[</span><br><span class="line">          &#123;<span class="attr">required</span>:<span class="literal">true</span>,<span class="attr">message</span>:<span class="string">"不能为空"</span>,<span class="attr">trigger</span>:<span class="string">'blur'</span>&#125;</span><br><span class="line">        ],</span><br><span class="line">        acount:[</span><br><span class="line">          &#123;<span class="attr">required</span>:<span class="literal">true</span>,<span class="attr">type</span>:<span class="string">'number'</span>,<span class="attr">message</span>:<span class="string">'必须为数字'</span>&#125;</span><br><span class="line">        ],</span><br><span class="line">        allocation:[</span><br><span class="line">          &#123;<span class="attr">required</span>:<span class="literal">true</span>,<span class="attr">message</span>:<span class="string">"不能为空"</span>,<span class="attr">trigger</span>:<span class="string">'blur'</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Mockjs拒绝访问异常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">dev: &#123;</span><br><span class="line"></span><br><span class="line">    // Paths</span><br><span class="line">    assetsSubDirectory: &apos;static&apos;,</span><br><span class="line">    assetsPublicPath: &apos;/&apos;,</span><br><span class="line">    proxyTable: &#123;&#125;,</span><br><span class="line"></span><br><span class="line">    // Various Dev Server settings</span><br><span class="line">    host: &apos;192.168.1.139&apos;, // 设置为固定IP，否则易出错；</span><br><span class="line">    port: 9000, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined</span><br><span class="line">    autoOpenBrowser: false,</span><br><span class="line">    errorOverlay: true,</span><br><span class="line">    notifyOnErrors: true,</span><br><span class="line">    poll: false, // https://webpa</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/flask/" rel="tag"># flask</a>
+              <a href="/tags/vue/" rel="tag"># vue</a>
+              <a href="/tags/webpack/" rel="tag"># webpack</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/10/Flask%E5%90%8E%E7%AB%AF-Vue%E5%89%8D%E7%AB%AF-Webpack%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8-01/" rel="prev" title="Flask后端-Vue前端-Webpack创建应用-01">
+      <i class="fa fa-chevron-left"></i> Flask后端-Vue前端-Webpack创建应用-01
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/19/%E7%9F%A5%E8%AF%86%E7%82%B9%E9%9B%B6%E6%95%A3%E8%AE%B0%E5%BD%95/" rel="next" title="知识点零散记录">
+      知识点零散记录 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flask后端-Vue前端-Webpack创建应用-02"><span class="nav-text">Flask后端-Vue前端-Webpack创建应用-02</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liupan"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">liupan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/facetothesea" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;facetothesea" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mailto:hbxgliupan@sina.com" title="E-Mail → mailto:hbxgliupan@sina.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liupan</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
