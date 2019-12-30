@@ -47,15 +47,15 @@
   };
 </script>
 
-  <meta name="description" content="Flask后端-Vue前端-Webpack创建应用-03 本部分主要针对Flask后端模型建立及数据库访问">
+  <meta name="description" content="本部分主要针对Flask后端模型建立及数据库访问">
 <meta name="keywords" content="flask,sqlalchemy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flask后端-Vue前端-Webpack创建应用-03">
 <meta property="og:url" content="http:&#x2F;&#x2F;liupan.run&#x2F;2019&#x2F;12&#x2F;24&#x2F;Flask%E5%90%8E%E7%AB%AF-Vue%E5%89%8D%E7%AB%AF-Webpack%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8-03&#x2F;index.html">
 <meta property="og:site_name" content="刘攀的个人专栏">
-<meta property="og:description" content="Flask后端-Vue前端-Webpack创建应用-03 本部分主要针对Flask后端模型建立及数据库访问">
+<meta property="og:description" content="本部分主要针对Flask后端模型建立及数据库访问">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-26T14:10:23.526Z">
+<meta property="og:updated_time" content="2019-12-30T11:23:04.270Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://liupan.run/2019/12/24/Flask%E5%90%8E%E7%AB%AF-Vue%E5%89%8D%E7%AB%AF-Webpack%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8-03/">
@@ -148,17 +148,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">17</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">20</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">1</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">0</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">11</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">13</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -242,7 +242,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-26 22:10:23" itemprop="dateModified" datetime="2019-12-26T22:10:23+08:00">2019-12-26</time>
+                <time title="修改时间：2019-12-30 19:23:04" itemprop="dateModified" datetime="2019-12-30T19:23:04+08:00">2019-12-30</time>
               </span>
 
           
@@ -256,7 +256,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Flask后端-Vue前端-Webpack创建应用-03"><a href="#Flask后端-Vue前端-Webpack创建应用-03" class="headerlink" title="Flask后端-Vue前端-Webpack创建应用-03"></a>Flask后端-Vue前端-Webpack创建应用-03</h1><blockquote>
+        <blockquote>
 <p>本部分主要针对Flask后端模型建立及数据库访问</p>
 </blockquote>
 <a id="more"></a>
@@ -334,7 +334,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flask后端-Vue前端-Webpack创建应用-03"><span class="nav-text">Flask后端-Vue前端-Webpack创建应用-03</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SqlAlchemy使用"><span class="nav-text">SqlAlchemy使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Models创建–部分"><span class="nav-text">Models创建–部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图函数–部分"><span class="nav-text">视图函数–部分</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SqlAlchemy使用"><span class="nav-text">SqlAlchemy使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Models创建–部分"><span class="nav-text">Models创建–部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图函数–部分"><span class="nav-text">视图函数–部分</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -350,20 +350,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
