@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>014-JS随机中文字符及Vue与Flask字界符修改</title>
+    <url>/2020/01/01/014-JS%E9%9A%8F%E6%9C%BA%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6%E5%8F%8AVue%E4%B8%8EFlask%E5%AD%97%E7%95%8C%E7%AC%A6%E4%BF%AE%E6%94%B9/</url>
+    <content><![CDATA[<blockquote>
+<p>JS随机中文字，Vue与Flask字界符修改</p>
+</blockquote>
+<h2 id="生成随机中文字符串"><a href="#生成随机中文字符串" class="headerlink" title="生成随机中文字符串"></a>生成随机中文字符串</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">randomChars</span>(<span class="params">count</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> str = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> temp = <span class="string">'0x'</span> + (<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random() * <span class="number">20901</span>) + <span class="number">19968</span>).toString(<span class="number">16</span>); </span><br><span class="line">        <span class="comment">//生成单个随机中文字符编号,每个字符编码样式为：'0x53c2'</span></span><br><span class="line">        str += <span class="built_in">String</span>.fromCharCode(temp);  <span class="comment">//从编码转换为字符</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<h2 id="Flask中的与Vue中的冲突解决方法"><a href="#Flask中的与Vue中的冲突解决方法" class="headerlink" title="Flask中的与Vue中的冲突解决方法"></a>Flask中的与Vue中的冲突解决方法</h2><p>Jinja2 有三种定界符语法：</p>
+<ul>
+<li>{ { x } } 用来标记变量；</li>
+<li>{ % x % } 用来标记语句；</li>
+<li>{ # x # } 用来标记注释；</li>
+</ul>
+<h3 id="1-使用-Jinja2-的-raw-标签标记-JavaScript-模板代码"><a href="#1-使用-Jinja2-的-raw-标签标记-JavaScript-模板代码" class="headerlink" title="1. 使用 Jinja2 的 raw 标签标记 JavaScript 模板代码"></a>1. 使用 Jinja2 的 raw 标签标记 JavaScript 模板代码</h3><p>第一种方式最直观，使用 Jinja2 的 raw 标签声明原生代码块，也就是不需要进行后端渲染的代码块。使用 <code>raw</code> 和 <code>endraw</code> 标签把 JavaScript 模板部分标记出来即可，比如：</p>
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">raw</span> %&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="template-variable">&#123;&#123; js_var &#125;&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name">endraw</span> %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这种方式的副作用最少，尽管需要多几行代码，但不会影响你写 Jinja2 或其他 JavaScript 库的语法习惯。</p>
+<h3 id="2-修改-Jinja2-的语法定界符号"><a href="#2-修改-Jinja2-的语法定界符号" class="headerlink" title="2. 修改 Jinja2 的语法定界符号"></a>2. 修改 Jinja2 的语法定界符号</h3><p>第二种方式是修改 Jinja2 的语法定界符号，一般只修改变量定界符即可，其他的按需修改。具体通过修改程序实例的下面几个属性来实现：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line">app.jinja_env.block_start_string = &apos;(%&apos;  # 修改块开始符号</span><br><span class="line">app.jinja_env.block_end_string = &apos;%)&apos;  # 修改块结束符号</span><br><span class="line">app.jinja_env.variable_start_string = &apos;((&apos;  # 修改变量开始符号</span><br><span class="line">app.jinja_env.variable_end_string = &apos;))&apos;  # 修改变量结束符号</span><br><span class="line">app.jinja_env.comment_start_string = &apos;(#&apos;  # 修改注释开始符号</span><br><span class="line">app.jinja_env.comment_end_string = &apos;#)&apos;  # 修改注释结束符号</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-修改-JavaScript-模板的语法定界符号"><a href="#3-修改-JavaScript-模板的语法定界符号" class="headerlink" title="3. 修改 JavaScript 模板的语法定界符号"></a>3. 修改 JavaScript 模板的语法定界符号</h3><p>第三种方式是修改 JavaScript 模板的语法定界符号，具体方法因 JavaScript 模板/框架而异，可以参见相关文档了解。以 Vuejs 为例，下面将模板定界符改为中括号：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">"#app"</span>,</span><br><span class="line">  delimiters: [<span class="string">"[["</span>, <span class="string">"]]"</span>],</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">"Hello Vue!"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="折中方案"><a href="#折中方案" class="headerlink" title="折中方案"></a>折中方案</h3><p>如果你觉得使用 <code>raw</code> 标签太麻烦，而修改语法定界符又不习惯，这里还有一个折中方法：两边都使用双花括号作为定界符，但根据花括号内部是否添加空格来进行区分。</p>
+<p>具体来说，对 Jinja2 变量使用 Jinja2 标准语法，也就是使用 。实际示例如下：</p>
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123; jinja_var &#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>而 JavaScript 模板使用没有空格的双花括号，即：</p>
+<figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="template-variable">&#123;&#123;js_var&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这是一种更适合心细的懒人的方法，如果是团队项目，可能会对不习惯这种用法的人造成困扰，记得在文档里注明。这种方式只需要修改 Jinja2 定界符：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">app.jinja_env.variable_start_string = &apos;&#123;&#123; &apos;</span><br><span class="line">app.jinja_env.variable_end_string = &apos; &#125;&#125;&apos;</span><br></pre></td></tr></table></figure>
+
+<p>另外需要注意的是，如果你使用了其他 Flask 扩展的内置 Jinja2 模板或宏，需要确保它们都使用了包含空格的标准 Jinja2 语法。举例来说，用来方便集成 Bootstrap 的 Flask-Bootstrap 就没法使用，需要使用替代的 Bootstrap-Flask。</p>
+]]></content>
+      <tags>
+        <tag>js</tag>
+        <tag>flask</tag>
+        <tag>vue</tag>
+        <tag>定界符</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CentOS7安装MariaDB</title>
     <url>/2019/12/30/CentOS7%E5%AE%89%E8%A3%85MariaDB/</url>
     <content><![CDATA[<blockquote>
