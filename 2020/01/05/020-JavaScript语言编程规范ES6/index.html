@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="刘攀的个人专栏" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://liupan.run').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","Pisces | Gemini":240,"display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="JavaScript语言编程规范ES6  代码风格 导出的默认函数使用驼峰命名、文件名与函数名一致； 导出单例、函数库、空对象时使用帕斯卡式命名，即首字母大写，如DisplayInfo；">
+<meta name="keywords" content="es6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="020-JavaScript语言编程规范ES6">
+<meta property="og:url" content="http:&#x2F;&#x2F;liupan.run&#x2F;2020&#x2F;01&#x2F;05&#x2F;020-JavaScript%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83ES6&#x2F;index.html">
+<meta property="og:site_name" content="刘攀的个人专栏">
+<meta property="og:description" content="JavaScript语言编程规范ES6  代码风格 导出的默认函数使用驼峰命名、文件名与函数名一致； 导出单例、函数库、空对象时使用帕斯卡式命名，即首字母大写，如DisplayInfo；">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-05T05:53:46.981Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://liupan.run/2020/01/05/020-JavaScript%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83ES6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>020-JavaScript语言编程规范ES6 | 刘攀的个人专栏</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">刘攀的个人专栏</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">面朝大海,春暖花开</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">28</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">20</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liupan.run/2020/01/05/020-JavaScript%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83ES6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="liupan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="刘攀的个人专栏">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          020-JavaScript语言编程规范ES6
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-05 13:11:01 / 修改时间：13:53:46" itemprop="dateCreated datePublished" datetime="2020-01-05T13:11:01+08:00">2020-01-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>JavaScript语言编程规范ES6</p>
+</blockquote>
+<h3 id="代码风格"><a href="#代码风格" class="headerlink" title="代码风格"></a>代码风格</h3><ul>
+<li>导出的默认函数使用驼峰命名、文件名与函数名一致；</li>
+<li>导出单例、函数库、空对象时使用帕斯卡式命名，即首字母大写，如DisplayInfo；</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="类型和变量"><a href="#类型和变量" class="headerlink" title="类型和变量"></a>类型和变量</h3><ol>
+<li>变量必须显式声明作用域<ul>
+<li>var 声明全局变量或函数级变量；</li>
+<li>let 声明块级局部变量；</li>
+<li>const 声明块级的只读作用域；（变量值可修改，重新赋值会出错）</li>
+</ul>
+</li>
+<li>尽量对所有引用使用const，const和let的作用域更小；</li>
+<li>将所有的const和let分组；</li>
+<li>在需要的地方给变量赋值，但必须放在合理的位置；</li>
+</ol>
+<h3 id="对象和引用"><a href="#对象和引用" class="headerlink" title="对象和引用"></a>对象和引用</h3><pre><code>1. 创建有动态属性名的对象时，尽量在一个地方定义其所有属性；
+ 2. 使用对象方法的简写，即`const a=a`，const obj={a,};</code></pre><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><ol>
+<li><p>使用扩展运算符…复制数组</p>
+<blockquote>
+<p>const itemsCopy=[…items]</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>使用. 来方问对象属性，只有属性的动态属性时才使用[]</p>
+<h3 id="逗号、分号"><a href="#逗号、分号" class="headerlink" title="逗号、分号"></a>逗号、分号</h3><ul>
+<li>逗号写在行尾，且增加结尾的逗号。</li>
+<li>使用分号，以分号作为语句结束符。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const obj=&#123;</span><br><span class="line">	firstName=&apos;Dane&apos;,</span><br><span class="line">	lastName=&apos;Scally&apos;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ol>
+<li>使用函数声明代替函数表达式；</li>
+<li>不要使用arguments，可以选择rest语法…替代</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">concatenateAll</span>(<span class="params">...args</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> args.join(<span class="string">' '</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>3. 直接给函数的参数指定默认值，不使用变化的函数参数。
+ 4. 直接给函数参数赋值时，要避免副作用。</code></pre><h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><pre><code>1. 使用括号包裹所有的多行代码块。
+ 2. 使用if、else多行代码块，把else放在代码块关闭括号的同一行。</code></pre><h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><ol>
+<li><p>代码总是使用es6标准模块import/export方式，而不使用非标准的模块加载器。</p>
+</li>
+<li><p>不要使用* 的import。</p>
+</li>
+<li><p>不要从import中直接export</p>
+<blockquote>
+<p>import {es6} from ‘./ablier.js’;</p>
+<p>export default es6;</p>
+</blockquote>
+</li>
+<li><p>如果文件只输出一个类，那文件名必须和类名完全保持一致。</p>
+</li>
+</ol>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><ol>
+<li><p>不要保存this的引用，使用箭头函数或Function.bind。</p>
+</li>
+<li><p>当必须使用函数表太式时，使用箭头函数；</p>
+<blockquote>
+<p>[1,2,3].map((x)=&gt;{</p>
+<p>​    return x*x;</p>
+<p>})</p>
+</blockquote>
+</li>
+<li><p><strong>如果一个函数适用一行写出并且只有一个参数，那就把花括号、圆括号和return都省略掉</strong></p>
+<blockquote>
+<p>[1,2,3].map(x =&gt; x*x;);</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h3><ol>
+<li>使用class关键字定义类</li>
+<li>采用extends关键字实现继承</li>
+</ol>
+<h3 id="解构"><a href="#解构" class="headerlink" title="解构"></a>解构</h3><ol>
+<li>使用解构存取和使用多属性对象，“es6允许按照一定的模式，从数组对象中提取值、对变量赋值，这称之为解构”</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFullName</span>(<span class="params">&#123;firstName,lastName&#125;</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;firstName&#125;</span> <span class="subst">$&#123;lastName&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>将数组成员赋值给变量时，使用数组解析；</li>
+<li>需要回传多个值时，使用对象解构，而不是数组解构；</li>
+</ol>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><ol>
+<li>长度超过80的字符串应该使用字符串连接换行；</li>
+<li>构建字符串时，使用字符串模板而不是字符串连接；</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`How are you, <span class="subst">$&#123;name&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>数组遍历采用for/of，对象遍历采用for/in</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="keyword">let</span> sum=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> num <span class="keyword">of</span> arr)&#123;</span><br><span class="line">  sum+=num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="存取器"><a href="#存取器" class="headerlink" title="存取器"></a>存取器</h3><ol>
+<li>属性的存取函数不是必须的，如果需要存储函数使用get、set方法，如果属性是布尔值，存取函数是isVal()或hasVal()</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dragon.getAge();</span><br><span class="line">dragon.setAge(<span class="number">25</span>);</span><br><span class="line"><span class="keyword">if</span>(!dragon.getAge())&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>创建get(),set()函数要保持一致</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(option=&#123;&#125;)&#123;</span><br><span class="line">    <span class="keyword">const</span> lightsaber=options.lightsaber||<span class="string">'blue'</span>;</span><br><span class="line">    <span class="keyword">this</span>.get(<span class="string">'lightsaber'</span>,lightsaber);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">set</span>(key,val)&#123;</span><br><span class="line">    <span class="keyword">this</span>[key]=val;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">get</span>(key)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>[key];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/es6/" rel="tag"># es6</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/03/019-CSS%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%BD%A2%E7%8A%B6/" rel="prev" title="019-CSS中常用形状">
+      <i class="fa fa-chevron-left"></i> 019-CSS中常用形状
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码风格"><span class="nav-text">代码风格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型和变量"><span class="nav-text">类型和变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象和引用"><span class="nav-text">对象和引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-text">数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性"><span class="nav-text">属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逗号、分号"><span class="nav-text">逗号、分号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-text">函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码块"><span class="nav-text">代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块"><span class="nav-text">模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箭头函数"><span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造器"><span class="nav-text">构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解构"><span class="nav-text">解构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-text">String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存取器"><span class="nav-text">存取器</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liupan"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">liupan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/facetothesea" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;facetothesea" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mailto:hbxgliupan@sina.com" title="E-Mail → mailto:hbxgliupan@sina.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liupan</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

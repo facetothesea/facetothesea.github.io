@@ -1,6 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>020-JavaScript语言编程规范ES6</title>
+    <url>/2020/01/05/020-JavaScript%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83ES6/</url>
+    <content><![CDATA[<blockquote>
+<p>JavaScript语言编程规范ES6</p>
+</blockquote>
+<h3 id="代码风格"><a href="#代码风格" class="headerlink" title="代码风格"></a>代码风格</h3><ul>
+<li>导出的默认函数使用驼峰命名、文件名与函数名一致；</li>
+<li>导出单例、函数库、空对象时使用帕斯卡式命名，即首字母大写，如DisplayInfo；</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="类型和变量"><a href="#类型和变量" class="headerlink" title="类型和变量"></a>类型和变量</h3><ol>
+<li>变量必须显式声明作用域<ul>
+<li>var 声明全局变量或函数级变量；</li>
+<li>let 声明块级局部变量；</li>
+<li>const 声明块级的只读作用域；（变量值可修改，重新赋值会出错）</li>
+</ul>
+</li>
+<li>尽量对所有引用使用const，const和let的作用域更小；</li>
+<li>将所有的const和let分组；</li>
+<li>在需要的地方给变量赋值，但必须放在合理的位置；</li>
+</ol>
+<h3 id="对象和引用"><a href="#对象和引用" class="headerlink" title="对象和引用"></a>对象和引用</h3><pre><code>1. 创建有动态属性名的对象时，尽量在一个地方定义其所有属性；
+ 2. 使用对象方法的简写，即`const a=a`，const obj={a,};</code></pre><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><ol>
+<li><p>使用扩展运算符…复制数组</p>
+<blockquote>
+<p>const itemsCopy=[…items]</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>使用. 来方问对象属性，只有属性的动态属性时才使用[]</p>
+<h3 id="逗号、分号"><a href="#逗号、分号" class="headerlink" title="逗号、分号"></a>逗号、分号</h3><ul>
+<li>逗号写在行尾，且增加结尾的逗号。</li>
+<li>使用分号，以分号作为语句结束符。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const obj=&#123;</span><br><span class="line">	firstName=&apos;Dane&apos;,</span><br><span class="line">	lastName=&apos;Scally&apos;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><ol>
+<li>使用函数声明代替函数表达式；</li>
+<li>不要使用arguments，可以选择rest语法…替代</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">concatenateAll</span>(<span class="params">...args</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> args.join(<span class="string">' '</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>3. 直接给函数的参数指定默认值，不使用变化的函数参数。
+ 4. 直接给函数参数赋值时，要避免副作用。</code></pre><h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><pre><code>1. 使用括号包裹所有的多行代码块。
+ 2. 使用if、else多行代码块，把else放在代码块关闭括号的同一行。</code></pre><h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><ol>
+<li><p>代码总是使用es6标准模块import/export方式，而不使用非标准的模块加载器。</p>
+</li>
+<li><p>不要使用* 的import。</p>
+</li>
+<li><p>不要从import中直接export</p>
+<blockquote>
+<p>import {es6} from ‘./ablier.js’;</p>
+<p>export default es6;</p>
+</blockquote>
+</li>
+<li><p>如果文件只输出一个类，那文件名必须和类名完全保持一致。</p>
+</li>
+</ol>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><ol>
+<li><p>不要保存this的引用，使用箭头函数或Function.bind。</p>
+</li>
+<li><p>当必须使用函数表太式时，使用箭头函数；</p>
+<blockquote>
+<p>[1,2,3].map((x)=&gt;{</p>
+<p>​    return x*x;</p>
+<p>})</p>
+</blockquote>
+</li>
+<li><p><strong>如果一个函数适用一行写出并且只有一个参数，那就把花括号、圆括号和return都省略掉</strong></p>
+<blockquote>
+<p>[1,2,3].map(x =&gt; x*x;);</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h3><ol>
+<li>使用class关键字定义类</li>
+<li>采用extends关键字实现继承</li>
+</ol>
+<h3 id="解构"><a href="#解构" class="headerlink" title="解构"></a>解构</h3><ol>
+<li>使用解构存取和使用多属性对象，“es6允许按照一定的模式，从数组对象中提取值、对变量赋值，这称之为解构”</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFullName</span>(<span class="params">&#123;firstName,lastName&#125;</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;firstName&#125;</span> <span class="subst">$&#123;lastName&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>将数组成员赋值给变量时，使用数组解析；</li>
+<li>需要回传多个值时，使用对象解构，而不是数组解构；</li>
+</ol>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><ol>
+<li>长度超过80的字符串应该使用字符串连接换行；</li>
+<li>构建字符串时，使用字符串模板而不是字符串连接；</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`How are you, <span class="subst">$&#123;name&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>数组遍历采用for/of，对象遍历采用for/in</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="keyword">let</span> sum=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> num <span class="keyword">of</span> arr)&#123;</span><br><span class="line">  sum+=num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="存取器"><a href="#存取器" class="headerlink" title="存取器"></a>存取器</h3><ol>
+<li>属性的存取函数不是必须的，如果需要存储函数使用get、set方法，如果属性是布尔值，存取函数是isVal()或hasVal()</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">dragon.getAge();</span><br><span class="line">dragon.setAge(<span class="number">25</span>);</span><br><span class="line"><span class="keyword">if</span>(!dragon.getAge())&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>创建get(),set()函数要保持一致</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(option=&#123;&#125;)&#123;</span><br><span class="line">    <span class="keyword">const</span> lightsaber=options.lightsaber||<span class="string">'blue'</span>;</span><br><span class="line">    <span class="keyword">this</span>.get(<span class="string">'lightsaber'</span>,lightsaber);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">set</span>(key,val)&#123;</span><br><span class="line">    <span class="keyword">this</span>[key]=val;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">get</span>(key)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>[key];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>es6</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>019-CSS中常用形状</title>
     <url>/2020/01/03/019-CSS%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%BD%A2%E7%8A%B6/</url>
     <content><![CDATA[<blockquote>
@@ -361,9 +476,9 @@
 </ul>
 ]]></content>
       <tags>
+        <tag>vscode</tag>
         <tag>pip</tag>
         <tag>npm</tag>
-        <tag>vscode</tag>
       </tags>
   </entry>
   <entry>
